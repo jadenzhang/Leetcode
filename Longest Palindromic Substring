@@ -1,0 +1,22 @@
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        int MaxLen=0, start=0, end=0;
+        int S[s.size()][s.size()];
+        memset(S,0,s.size()*s.size()*sizeof(int));
+        
+        for (int i=0;i<s.size();i++){
+            for(int j=0;j<i;j++){
+                S[j][i]= (s[j]==s[i] && (i-j<2 || S[j+1][i-1]));
+                if (S[j][i] && MaxLen < i-j+1){
+                    MaxLen = i-j+1;
+                    start = j;
+                    end = i;
+                }
+            }
+            S[i][i]=1;
+        }
+        return s.substr(start, end-start+1);
+    }
+    
+};
