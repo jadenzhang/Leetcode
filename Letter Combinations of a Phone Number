@@ -1,27 +1,25 @@
 class Solution {
 public:
     vector<string> letterCombinations(string digits) {
-        string map[] = {"", " ", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-        vector<string> solutions;
-        if (digits == "") return solutions;
-        string result;
-        Machine(digits,map,0,result,solutions);
-        return solutions;
+        vector<string> m={"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        vector<string> res;
+        if (digits=="") return res;
+        string comb;
+        tool(res,comb,m,0,digits);
+        return res;
     }
     
-    void Machine(string& digits, string map[], int deep, string& result, vector<string>& solutions){
-        
-        if (deep == digits.size()){
-            solutions.push_back(result);
+    void tool(vector<string>&res,string &comb,vector<string> m,int deep,string digits){
+        if (deep==digits.size()){
+            res.push_back(comb);
             return;
         }
+        int key=digits[deep]-'0';
         
-        int CurDig = digits[deep]-48;
-        
-        for (int i=0;i<map[CurDig].size();i++){
-            result.push_back(map[CurDig][i]);
-            Machine(digits,map,deep+1,result,solutions);
-            result.pop_back();
+        for (auto a:m[key]){    
+            comb.push_back(a);
+            tool(res,comb,m,deep+1,digits);
+            comb.pop_back();
         }
     }
 };
