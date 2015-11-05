@@ -1,4 +1,6 @@
 # Leetcode
 
-Hi, my name is Jaden. I am a Computer Science and Computational Statistics double major student in UC Davis.
-Weclome to my LeetCode folder!
+Hi, my name is Jaden. Weclome to my LeetCode folder!
+Stay Foolish, Stay Hungry.
+
+Free feel to contact me by jidzhang@ucdavis.edu
