@@ -14,9 +14,8 @@ public:
             return;
         }
         
-        if (cur > target) return;
-        
         for (int i=start;i<candidates.size();i++){
+            if (cur+candidates[i]>target) break;
             sol.push_back(candidates[i]);
             FindCombinations(ret,sol,i+1,cur+candidates[i],candidates,target);
             sol.pop_back();
