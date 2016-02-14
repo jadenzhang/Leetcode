@@ -41,3 +41,38 @@ public:
 
     }
 };
+
+
+//Solution 2
+
+/**
+ * Definition for an interval.
+ * struct Interval {
+ *     int start;
+ *     int end;
+ *     Interval() : start(0), end(0) {}
+ *     Interval(int s, int e) : start(s), end(e) {}
+ * };
+ */
+class Solution {
+public:
+    vector<Interval> merge(vector<Interval>& intervals) {
+        int n = intervals.size();
+        if (n==0 || n==1) return intervals;
+        int len = 0;
+        sort(intervals.begin(),intervals.end(),[](Interval A, Interval B){return A.start<B.start;});
+        for (int i=0;i+1<n;i++){
+            if(intervals[i].end < intervals[i+1].start){
+                intervals[len] = intervals[i];
+                len++;
+            }
+            else{
+                intervals[i+1].start = min(intervals[i].start,intervals[i+1].start);
+                intervals[i+1].end = max(intervals[i].end,intervals[i+1].end);
+            }
+        }
+        intervals[len++] = intervals.back();
+        intervals.resize(len);
+        return intervals;
+    }
+};
